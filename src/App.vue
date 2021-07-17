@@ -49,27 +49,25 @@ const routeName = computed(() => {
   if (route.name === "preview" || route.name === "main") return "编辑";
 });
 
-// onMounted(() => {
-//   let myData = localStorage.getItem("myData");
-//   if (myData) {
-//     myData = JSON.parse(myData);
-//     store.commit("updateEditIndex", myData[4]);
-//     store.commit("updateContentList", myData[3]);
-//     store.commit("updateTitleList", myData[2]);
-//     store.commit("updateContent", myData[1]);
-//     store.commit("updateTitle", myData[0]);
-//   }
-// });
+onMounted(() => {
+  let myData = localStorage.getItem("myData");
+  if (myData) {
+    myData = JSON.parse(myData);
+    store.commit("updateEditIndex", myData[3]);
+    store.commit("updateList", myData[2]);
+    store.commit("updateContent", myData[1]);
+    store.commit("updateTitle", myData[0]);
+  }
+});
 
-// window.onbeforeunload = () => {
-//   let title = store.state.title;
-//   let content = store.state.content;
-//   let titleList = store.state.titleList;
-//   let contentList = store.state.contentList;
-//   let editIndex = store.state.editIndex;
-//   let myData = [title, content, titleList, contentList, editIndex];
-//   localStorage.setItem("myData", JSON.stringify(myData));
-// }
+window.onbeforeunload = () => {
+  let title = store.state.title;
+  let content = store.state.content;
+  let list = store.state.list;
+  let editIndex = store.state.editIndex;
+  let myData = [title, content, list, editIndex];
+  localStorage.setItem("myData", JSON.stringify(myData));
+}
 
 const JumpMain = () => {
   router.push("/");
@@ -95,15 +93,10 @@ const handleJump = () => {
   & .n-layout-content {
       margin:  auto;
       padding: 16px;
-      max-width: 360px;
+      max-width: 450px;
       
   }
 
-  & .n-layout-content {
-    margin: auto;
-    padding: 16px;
-    max-width: 720px;
-  }
 }
   .router-link-active {
       text-decoration: none;

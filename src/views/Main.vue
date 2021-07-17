@@ -1,8 +1,8 @@
 <template>
   <n-space vertical>
-    <n-list v-if="titleList.length">
+    <n-list v-if="list.length">
       <draggable
-        :list="titleList"
+        :list="list"
         @start="drag = true"
         @end="drag = false"
         item-key="id"
@@ -40,7 +40,7 @@ import TaskItem from "../components/TaskItem.vue";
 import draggable from "vuedraggable";
 
 const store = useStore();
-const titleList = computed(() => store.state.titleList);
+const list = computed(() => store.state.list);
 const router = useRouter();
 
 const onDelete = (index) => {

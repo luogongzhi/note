@@ -24,6 +24,7 @@ import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import { NButton, NDivider, useMessage, NInput} from "naive-ui";
 import { v4 as uuidv4 } from 'uuid';
+import EasyMDE from "easymde";
 
 const router = useRouter();
 const store = useStore();
@@ -40,8 +41,8 @@ const handleSubmit = (index) => {
             task : {
                 id: uuidv4(),
                 title: title.value,
-            },
-            content : easyMDE.value()
+                content : easyMDE.value()
+            }
         });
         message.success('添加成功');
     }else {

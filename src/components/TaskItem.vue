@@ -13,8 +13,8 @@
       @transitionEnd="onTransitionEnd"
     >
       <swiper-slide class="delete-slide">删除</swiper-slide>
-      <swiper-slide @click="onClick" v-if="task.title == ''">暂无标题</swiper-slide>
-      <swiper-slide @click="onClick" v-else>{{ task.title }}</swiper-slide>
+      <swiper-slide class="content-slide" @click="onClick" v-if="task.title == ''">暂无标题</swiper-slide>
+      <swiper-slide class="content-slide" @click="onClick" v-else>{{ task.title }}</swiper-slide>
       <swiper-slide class="edit-slide">编辑</swiper-slide>
     </swiper>
   </n-list-item>
@@ -73,23 +73,26 @@ const onClick = () => {
     padding: 8px 0;
     display: flex;
     align-items: center;
-    width: 100% !important;
+    width: 100%;
   }
-
+  & .content-slide{
+      width:385.6px !important;
+  }
   & .edit-slide {
     box-sizing:border-box;
     color: white;
+    width: 452px;
     background: green;
-    padding-right: 16px;
     justify-content: flex-start;
+    padding-left: 20px !important;
   }
 
   & .delete-slide {
-    box-sizing:border-box;
     color: white;
     background: tomato;
-    padding-left: 16px;
+    padding-right: 20px !important;
     justify-content: flex-end;
+    box-sizing:border-box;
   }
 }
 
