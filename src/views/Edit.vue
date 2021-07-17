@@ -5,7 +5,10 @@
         type="input"
         placeholder="请填写标题"
         required="required"
-      />
+        clearable 
+      > 
+           <template #prefix>标题：</template>
+        </n-input>
     </div>
     <n-divider dashed="true"/>
     <textarea id="my-text-area" />
@@ -27,29 +30,29 @@ const store = useStore();
 const message = useMessage();
 const title = ref(store.state.title);
 const content = computed(() => store.state.content);
-const index = store.state.editIndex;
-
+const index = ref(store.state.editIndex);
 let easyMDE;
 let interval;
 
 const handleSubmit = (index) => {
-    if (index) {
-        let data = {
+    if (index === null) {
+        store.commit("addTask", {
+            task : {
+                id: uuidv4(),
+                title: title.value,
+            },
+            content : easyMDE.value()
+        });
+        message.success('添加成功');
+    }else {
+        store.commit("edit", {
             index: index,
             title: title.value,
             content: easyMDE.value()
-        }
-        store.commit("edit", data);
+        });
         message.success('编辑成功');
-        router.push('/');
-    }else {
-        store.commit("addTask", {
-            id: uuidv4(),
-            title: title.value
-        },easyMDE.value());
-        message.success('添加成功');
-        router.push('/');
     }
+    store.commit("saveEdit", {title:title,content:easyMDE.value()});
 };
 
 onMounted(() => {

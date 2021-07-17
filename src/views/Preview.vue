@@ -14,7 +14,7 @@
 import { computed, onMounted } from "vue";
 import { useStore } from "vuex";
 import marked from "marked";
-import { NCard } from "naive-ui";
+import { NCard, NDivider } from "naive-ui";
 
 const store = useStore();
 const title = computed(() => store.state.title);
@@ -39,6 +39,6 @@ onMounted(() => {
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 100px;
+        height: 300px;
     }
 </style>

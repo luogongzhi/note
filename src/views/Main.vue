@@ -7,7 +7,7 @@
         @end="drag = false"
         item-key="id"
       >
-        <!-- <template #item="{ index, element }">
+        <template #item="{ index, element }">
           <task-item
             :taskIndex="index"
             :task="element"
@@ -15,7 +15,7 @@
             @delete="() => onDelete(index)"
             @edit="() => onEdit(index)"
           />
-        </template> -->
+        </template>
       </draggable>
     </n-list>
     <n-thing v-else> 请添加你的笔记 </n-thing>
@@ -40,9 +40,9 @@ import TaskItem from "../components/TaskItem.vue";
 import draggable from "vuedraggable";
 
 const store = useStore();
-let titleList = computed(() => store.state.titleList);
+const titleList = computed(() => store.state.titleList);
 const router = useRouter();
-console.log(titleList);
+
 const onDelete = (index) => {
   store.commit("deleteTask", index);
 };
